@@ -31,11 +31,6 @@ df_from_each_file = (pd.read_csv(f) for f in all_files)
 concatenated_df = pd.concat(df_from_each_file, ignore_index = True)
 
 
-# In[26]:
-
-
-concatenated_df.to_csv("ALLARTICLES.csv")
-
 
 # In[32]:
 
@@ -73,6 +68,6 @@ len(df)
 # In[134]:
 
 
-df[].to_csv(".csv")
+df.to_csv("all_good_articles.csv")
 
 

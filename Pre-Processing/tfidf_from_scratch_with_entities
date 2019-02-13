@@ -101,6 +101,24 @@ tokenize_and_stem_NER(corpus)
 
 tokenized_corpus[0]
 
+
+
+
+
+from sklearn.feature_extraction import stop_words
+def tokenize_and_stem(text):
+    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
+    filtered_tokens = []
+    for token in tokens:
+        if re.search('[a-zA-Z]', token) and token not in list(stop_words.ENGLISH_STOP_WORDS):
+            filtered_tokens.append(token)
+    stems = [stemmer.stem(t) for t in filtered_tokens]
+    return stems
+
+
+tokenized_corpus = [tokenize_and_stem(article) for article in corpus]
+
+
 def TF_dict(article):
     article_tf = {}
     for word in article:
@@ -121,6 +139,7 @@ def TF_dict(article):
 TF = [TF_dict(article) for article in tokenized_corpus]     
 
 
+
 def Count_dict():
     countDict = {}
     for article in TF:
@@ -136,7 +155,8 @@ def Count_dict():
     
 countDict = Count_dict()
 
-
+import operator
+sortCount = sorted(countDict.items(), key=operator.itemgetter(1), reverse = True)
 
 
 def IDF_dict():
@@ -145,7 +165,38 @@ def IDF_dict():
     for word in countDict:
         #len(corpus) is 1000, the total number of documents
         #countDict[word] is the number of articles the word appears in
-        idfDict[word] = math.log(len(corpus) / countDict[word])
+        """
+        From Sci-Kit code: https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/feature_extraction/text.py
+            'smooth_idf: If ``smooth_idf=True`` (the default), the constant "1" is added to the
+            numerator and denominator of the idf as if an extra document was seen
+            containing every term in the collection exactly once, which prevents
+            zero divisions: idf(d, t) = log [ (1 + n) / (1 + df(d, t)) ] + 1.'
+            
+            'The effect of adding "1" to
+            the idf in the equation above is that terms with zero idf, i.e., terms
+            that occur in all documents in a training set, will not be entirely
+            ignored.'
+            
+            min_df: 'When building the vocabulary ignore terms that have a document
+            frequency strictly lower than the given threshold. This value is also
+            called cut-off in the literature.'
+            
+            max_df: 'When building the vocabulary ignore terms that have a document
+            frequency strictly higher than the given threshold (corpus-specific
+            stop words).'
+            
+            norm: (default='l2') Each output row will have unit norm, either:
+                * 'l2': Sum of squares of vector elements is 1. The cosine
+                similarity between two vectors is their dot product when l2 norm has
+                been applied.
+        """
+        #Implements min_df and max_df
+        min_df = 0
+        max_df = 1.0
+        if countDict[word] > min_df and (countDict[word] / len(corpus)) < max_df:
+            idfDict[word] = math.log((1 + len(corpus)) / (1 + countDict[word])) + 1
+        else:
+            idfDict[word] = 0
     return idfDict
 
 idfDict = IDF_dict()
@@ -165,6 +216,8 @@ tfidf = [TFIDF_list(article) for article in TF]
 
 
 
+
+from sklearn import preprocessing
 terms = sorted(countDict.keys())
 def compute_TFIDF_matrix(article):
     article_matrix = [0.0] * len(terms)
@@ -180,6 +233,8 @@ def compute_TFIDF_matrix(article):
 
 tfidf_matrix = [compute_TFIDF_matrix(article) for article in tfidf]
 
+#Normalized with the default l2 setting
+tfidf_matrix = preprocessing.normalize(tfidf_matrix, norm = 'l2')
 
 
 from sklearn.metrics.pairwise import cosine_similarity
@@ -189,6 +244,10 @@ dist2 = 1 - cosine_similarity(tfidf_matrix)
 ####################################################################  
 ####################################################################
 ########################VISUALIZATION###############################
+from sklearn.decomposition import TruncatedSVD
+import mpld3
+from mpld3 import display
+
 svd = TruncatedSVD(n_components=2).fit(tfidf_matrix)
 data2D = svd.transform(tfidf_matrix)
 fig, ax = plt.subplots(figsize = (14,8))
@@ -198,9 +257,5 @@ ax.plot(data2D[:, 0], data2D[:, 1],
 ax.set_title('Truncated SVD with Cluster Assignments', size=14)
 ax.grid(color='lightgray', alpha=0.7)
 for i, txt in enumerate(events):
-    plt.annotate(txt + ", " + str(y_pred[i]), (data2D[:, 0][i], data2D[:, 1][i]))
+    plt.annotate(txt, (data2D[:, 0][i], data2D[:, 1][i]))
 mpld3.show(fig)
-
-
-
-

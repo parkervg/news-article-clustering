@@ -62,5 +62,4 @@ good_ents = ["PERSON","GPE","ORG", "LOC", "EVENT", "FAC"]
 * F1 score: 0.8178807947019867
 * Sillhouette Score: 0.08456507985134794
 
-good_ents = ["GPE","ORG", "LOC", "EVENT", "FAC"]
 

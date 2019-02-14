@@ -27,10 +27,6 @@
 
 ## HAC
 
-#### 500_euclidean_HAC_ENTS
-* F1 score: 0.8792710706150342
-* Sillhouette Score: 0.08451414378144817
-
 #### 350_euclidean_HAC
 * F1 score: 0.8359621451104101
 * Sillhouette Score: 0.08998077808781355
@@ -39,6 +35,27 @@
 * F1 score: 0.8997613365155133
 * Sillhouette Score: 0.08817834578438288
 
-#### 350_euclidean_HAC_ENTS
+
+good_ents = ["PERSON","GPE","ORG", "LOC", "EVENT", "FAC"]
+
+#### 500_euclidean_HAC_ENTS_*5
+* F1 score: 0.8691588785046729
+* Sillhouette Score: 0.09316827956149414
+
+#### 500_euclidean_HAC_ENTS_*4
+* F1 score: 0.8721461187214612
+* Sillhouette Score: 0.09069735742843224
+
+#### 500_euclidean_HAC_ENTS_*3
+* F1 score: 0.8899297423887589
+* Sillhouette Score: 0.08761547351995444
+
+#### 500_euclidean_HAC_ENTS_*2
+* F1 score: 0.8792710706150342
+* Sillhouette Score: 0.08451414378144817
+
+#### 350_euclidean_HAC_ENTS_*2
 * F1 score: 0.8178807947019867
 * Sillhouette Score: 0.08456507985134794
+
+good_ents = ["GPE","ORG", "LOC", "EVENT", "FAC"]

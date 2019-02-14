@@ -38,7 +38,7 @@
 
 good_ents = ["PERSON","GPE","ORG", "LOC", "EVENT", "FAC"]
 
-#### 500_euclidean_HAC_ENTS_*4_PERSON*1.3
+#### 500_euclidean_HAC_ENTS_*4_PERSON_times1.3
 * F1 score: 0.9067357512953368
 * Sillhouette Score: 0.09050069997225527
 

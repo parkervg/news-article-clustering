@@ -37,8 +37,14 @@
 
 
 good_ents = ["PERSON","GPE","ORG", "LOC", "EVENT", "FAC"]
+General trend: As the entity weighting increases, the sillhouette score also increases, usually at the expense of F1 score. The intense weighting of entities produces more spread out, tight-knit clusters.
 
-#### 500_euclidean_HAC_ENTS_*4_PERSON_times1.3
+
+#### 500_euclidean_HAC_ENTS_*6_PERSON_*1.3
+* F1 score: 0.8974358974358975
+* Sillhouette Score: 0.09440994024020795
+
+#### 500_euclidean_HAC_ENTS_*4_PERSON_*1.3
 * F1 score: 0.9067357512953368
 * Sillhouette Score: 0.09050069997225527
 

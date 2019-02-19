@@ -10,12 +10,10 @@ In a political climate of intensely polarizing takes on the latest scandals, int
 
 ![Distance Heatmap](/Visualizations/distance_heatmap.png)
 
-
-<style>
-</style>
+ 
 
 <div id="fig_el76431124739954728440390049"></div>
-<script>
+```javascript
 function mpld3_load_lib(url, callback){
   var s = document.createElement('script');
   s.src = url;
@@ -49,7 +47,7 @@ if(typeof(mpld3) !== "undefined" && mpld3._mpld3IsLoaded){
             })
          });
 }
-</script>
+```
 
 Possible Roadblocks:
 * Specificity in clusters. Russia = Russian election hacking or Russian international relations or Russian Olympic ban?

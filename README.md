@@ -18,11 +18,7 @@ In a political climate of intensely polarizing takes on the latest scandals, int
 | 151910 | My grandmother‚Äôs death saved me from a life of debt                             | Guardian    | Robert Pendry     | 10/31/16 | 2016 | 10    | https://www.theguardian.com/commentisfree/2016/oct/31/grandmothers-death-saved-me-life-of-debt                          | 
 | 151911 | I feared my life lacked meaning. Cancer pushed me to find some                    | Guardian    | Bradford Frost    | 11/26/16 | 2016 | 11    | https://www.theguardian.com/commentisfree/2016/nov/26/cancer-diagnosis-existential-life-accomplishments-meaning         | 
 | 151912 | Texas man serving life sentence innocent of double murder, judge says             | Guardian    |                   | 8/20/16  | 2016 | 8     | https://www.theguardian.com/us-news/2016/aug/20/texas-life-sentence-innocence-dna-richard-bryan-kussmaul                | 
-| 151914 | My dad‚Äôs Reagan protests inspire me to stand up to Donald Trump                 | Guardian    | Steven W Thrasher | 11/28/16 | 2016 | 11    | https://www.theguardian.com/commentisfree/2016/nov/28/my-dads-reagan-protests-inspire-me-to-stand-up-to-donald-trump    | 
-| 151915 | Flatmates of gay Syrian refugee beheaded in Turkey fear they will be next         | Guardian    | Patrick Kingsley  | 8/7/16   | 2016 | 8     | https://www.theguardian.com/world/2016/aug/07/flatmates-of-gay-syrian-refugee-beheaded-in-turkey-fear-they-will-be-next | 
-| 151916 | Jaffas and daredevils: life on the world‚Äôs steepest street                      | Guardian    | Eleanor Ainge Roy | 7/22/16  | 2016 | 7     | https://www.theguardian.com/world/2016/jul/23/jaffas-and-daredevils-life-on-the-worlds-steepest-street                  | 
-| 151917 | NSA contractor arrested for alleged theft of top secret classified information    | Guardian    | Ewen MacAskill    | 10/5/16  | 2016 | 10    | https://www.theguardian.com/us-news/2016/oct/05/nsa-contractor-arrested-harold-thomas-martin-edward-snowden             | 
-| 151918 | Donald Trump to dissolve his charitable foundation after mounting complaints      | Guardian    | Ben Jacobs        | 12/24/16 | 2016 | 12    | https://www.theguardian.com/us-news/2016/dec/24/trump-university-shut-down-conflict-of-interest                         | 
+| 
 
 
 

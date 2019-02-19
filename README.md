@@ -6,7 +6,11 @@ This unsupervised learning project allows the average news consumer to experienc
 ## Motivation
 In a political climate of intensely polarizing takes on the latest scandals, international relations, and national issues, it can be difficult to make sense of all the data. With the rise of social media, the ability to publish has been democratized and repetition in the newsfeed runs rampant. By grouping together news stories by topic, not only is the newsfeed browsing process streamlined, but groups created that provide differing perspective on the same story.
 
-OriginDataset: https://www.kaggle.com/snapcrack/all-the-news
+## Methodology
+
+![Distance Heatmap](/Users/parkerglenn/Desktop/DataScience/Article_Clustering/Visualizations/distance_heatmap.png)
+
+
 
 Possible Roadblocks:
 * Specificity in clusters. Russia = Russian election hacking or Russian international relations or Russian Olympic ban?

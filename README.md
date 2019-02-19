@@ -8,7 +8,7 @@ In a political climate of intensely polarizing takes on the latest scandals, int
 
 ## Methodology
 
-![Distance Heatmap](/Users/parkerglenn/Desktop/DataScience/Article_Clustering/Visualizations/distance_heatmap.png)
+![Distance Heatmap](/Visualizations/distance_heatmap.png)
 
 
 

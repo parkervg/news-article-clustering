@@ -11,6 +11,7 @@ In a political climate of intensely polarizing takes on the latest scandals, int
 ![Distance Heatmap](/Visualizations/distance_heatmap.png)
 
 
+![Cluster Centers](/Visualizations/Cluster_Centers.html)
 
 Possible Roadblocks:
 * Specificity in clusters. Russia = Russian election hacking or Russian international relations or Russian Olympic ban?

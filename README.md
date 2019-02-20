@@ -22,6 +22,8 @@ Below is a snippet of the original data (https://www.kaggle.com/snapcrack/all-th
 The orginal dataset was cleansed to only keep rows which contained both a url and a date. This data cleansing resulted in a working dataframe of 82,920 articles.
 
 # Methodology - Analysis
+
+## Data Exploration
 We began by exploring the distribution of certain notable factors of the data, such as date and publisher. There are 10 unique pulishers in our subset of the data, with an interesting distribution in publishing date:
 
 ![Date Disitribution](/Visualizations/date_frequency.png)
@@ -39,7 +41,7 @@ This labelling was completed for 1,000 of the articles, to be used for our clust
 
 
 ## Pre-Processing
-TFIDF is used as the primary pre-processing method, with some adjustments to account for entity weighting. First, a special tokenizer was created which takes into consideration the entity type of the token. If the token is a location, organization or event, the token is saved in all capital letters. If the token is a person, it is saved as a title (only the first letter of each word is capitalized). This was achieved using [Spacy's entity recognition] (https://spacy.io/usage/linguistic-features).
+TFIDF is used as the primary pre-processing method, with some adjustments to account for entity weighting. First, a special tokenizer was created which takes into consideration the entity type of the token. If the token is not an entity, the stem of the token is taken using nltk's [snowball stemmer](http://www.nltk.org/howto/stem.html). Stemming refers to the process of reducing an inflected (or sometimes derived) word to their base form, even if is not identical to its morphological root. If the token is a location, organization or event, the token is saved in all capital letters. If the token is a person, it is saved as a title (only the first letter of each word is capitalized). This was achieved using [Spacy's entity recognition](https://spacy.io/usage/linguistic-features).
 
 ```python
 sent = ["The United Nations ban pineapple on pizza, but Bill Gates fights back."]
@@ -48,12 +50,15 @@ print(tokens)
 >>>> ['THE UNITED NATIONS', 'ban', 'pineappl', 'pizza', 'Bill Gates', 'fight']
 ```
 
-Then, to give extra significance to these entities, their TFIDF score was manipulated; specifically, in creating the TF_dict from the file ![tfidf_from_scratch_with_entities.py](/Pre-Processing/tfidf_from_scratch_with_entities.py), the non-person entities were multipled by a factor of 4, and the person entities a factor of 1.3. 
+Then, to give extra significance to these entities, their TFIDF score was manipulated; specifically, in creating the TF_dict from the file [tfidf_from_scratch_with_entities.py](https://github.com/parkervg/news-article-clustering/blob/master/Pre-Processing/tfidf_from_scratch_with_entities), the non-person entities were multipled by a factor of 4, and the person entities a factor of 1.3. 
+
+## Clustering
+
+![Article Centers](/Visualizations/Article_Centers.png)
 
 
 ## Defining Success
-
-### [F1 Score] (https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html)
+### [F1 Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html)
 The F1 score is defined as the harmonic mean between precision and recall. Being as this is an unsupervised learning project, the definition of "y_true" was not inherently obvious. When looking at a cluster of, say, {'zika_std': 1, 'robert_finicum_shooting': 3}, it is difficult from the mere labels which event is a false positive. In response to this ambiguity, a success algorithm was made to assign as many clusters as possible to one unique, predominant event. 
 
 This predominant event was found by invoking not only the frequency of events, but the individual events' "ratio" when compared to the total occurences of that event. First, the predominant event was defined merely as that event which occured most often within a specific cluster. For example, in the instance of *Cluster A* containing {'zika_std': 1, 'robert_finicum_shooting': 3}, the predominant event would be 'robert_finicum_shooting.'
@@ -62,7 +67,7 @@ Second, the ratio of an event is invoked. The process of defining predominance m
 
 If, between two clusters there is a tie in ratios of their predominant event, the clusters are dismissed when calculating the F1 Score. For our purposes, the F1 Score is not intended to be a perfect measure, but merely a gauge by which some improvement may be noticed as we pass through different clustering models.
 
-### [Silhouette Score] (https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html)
+### [Silhouette Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html)
 While the F1 Score defines success based on the values being assigned, the Silhouette Score uses the intrinsic properties of the clusters themselves, with no weight given to the meaning of labels. 
 
 A value of +1 indicates that the sample is far away from its neighboring cluster and very close to the cluster its assigned. Similarly, value of -1 indicates that the point is close to its neighboring cluster than to the cluster its assigned. And, a value of 0 means its at the boundary of the distance between the two cluster. Value of +1 is ideal and -1 is least preferred. Hence, higher the value better is the cluster configuration.

@@ -44,10 +44,10 @@ This labelling was completed for 1,000 of the articles, to be used for our clust
 TFIDF is used as the primary pre-processing method, with some adjustments to account for entity weighting. First, a special tokenizer was created which takes into consideration the entity type of the token. If the token is not an entity, the stem of the token is taken using nltk's [snowball stemmer](http://www.nltk.org/howto/stem.html). Stemming refers to the process of reducing an inflected (or sometimes derived) word to their base form, even if is not identical to its morphological root. If the token is a location, organization or event, the token is saved in all capital letters. If the token is a person, it is saved as a title (only the first letter of each word is capitalized). This was achieved using [Spacy's entity recognition](https://spacy.io/usage/linguistic-features).
 
 ```python
-sent = ["The United Nations ban pineapple on pizza, but Bill Gates fights back."]
+sent = ["The United Nations ban pineapple on pizza, but Bill Gates intends to fights back."]
 tokens = tokenize_and_stem_NER(sent)
 print(tokens)
->>>> ['THE UNITED NATIONS', 'ban', 'pineappl', 'pizza', 'Bill Gates', 'fight']
+>>>> ['THE UNITED NATIONS', 'ban', 'pineappl', 'pizza', 'Bill Gates', 'intend', 'fight']
 ```
 
 Then, to give extra significance to these entities, their TFIDF score was manipulated; specifically, in creating the TF_dict from the file [tfidf_from_scratch_with_entities.py](https://github.com/parkervg/news-article-clustering/blob/master/Pre-Processing/tfidf_from_scratch_with_entities), the non-person entities were multipled by a factor of 4, and the person entities a factor of 1.3. 

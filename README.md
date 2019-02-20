@@ -26,7 +26,8 @@ The orginal dataset was cleansed to only keep rows which contained both a url an
 ## Data Exploration
 We began by exploring the distribution of certain notable factors of the data, such as date and publisher. There are 10 unique pulishers in our subset of the data, with an interesting distribution in publishing date:
 
-![Date Disitribution](/Visualizations/date_frequency.png)
+<img src="https://github.com/parkervg/news-article-clustering/blob/master/Visualizations/date_frequency.png" width="500">
+
 
 For the purpose of our project, a document similarity-based task, it seemed most appropriate to run our clustering tests on a section of the data found to the right. Considering that the texts we are working with are all news stories, the frequency of having multiple distinct news stories published about the same event is increased when they are more chronologically compact, i.e. the chance of having an article about the 2016 Iowa Caucus 7 months after it took place is unlikely. 
 
@@ -53,6 +54,9 @@ print(tokens)
 Then, to give extra significance to these entities, their TFIDF score was manipulated; specifically, in creating the TF_dict from the file [tfidf_from_scratch_with_entities.py](https://github.com/parkervg/news-article-clustering/blob/master/Pre-Processing/tfidf_from_scratch_with_entities), the non-person entities were multipled by a factor of 4, and the person entities a factor of 1.3. 
 
 ## Clustering
+As noted before, the three clustering methods that we utilized in our project were Kmeans, HAC, and KNN. Ultimately, after many iterations and logging of [success rates](https://github.com/parkervg/news-article-clustering/blob/master/Success_Rates.md), [HAC (Hierarchical Agglomerative Clustering)](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.AgglomerativeClustering.html) proved to be the most successful method.
+
+Below is a graphic, 2D representation of the multidimensional TFIDF matrix and resulting clusters (as clustered by Kmeans). The annotation by each data point is the "predominant event" as explained below in the Defining Success section, and the size of each point is directly related to the number of articles in that specific cluster. 
 
 ![Article Centers](/Visualizations/Article_Centers.png)
 
@@ -72,14 +76,13 @@ While the F1 Score defines success based on the values being assigned, the Silho
 
 A value of +1 indicates that the sample is far away from its neighboring cluster and very close to the cluster its assigned. Similarly, value of -1 indicates that the point is close to its neighboring cluster than to the cluster its assigned. And, a value of 0 means its at the boundary of the distance between the two cluster. Value of +1 is ideal and -1 is least preferred. Hence, higher the value better is the cluster configuration.
 
-
+## Summary
+Our 500 cluster HAC model can cluster together the 1,000 news articles we had pre-processed with an *F1-Score of 0.9067357512953368* and a *Sillhouette Score of 0.09050069997225527*. 
 
 
 Possible Roadblocks:
 * Specificity in clusters. Russia = Russian election hacking or Russian international relations or Russian Olympic ban?
 * Intersections in broad topics. E.g. "Donald Trump speaks about Hurricane Matthew" about DT or hurricane?
-
-
 Notes:
 * Put special emphasis on dates and names when organizing clusters (use spacy entity recognition) 
 

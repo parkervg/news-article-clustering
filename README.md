@@ -77,7 +77,7 @@ While the F1 Score defines success based on the values being assigned, the Silho
 A value of +1 indicates that the sample is far away from its neighboring cluster and very close to the cluster its assigned. Similarly, value of -1 indicates that the point is close to its neighboring cluster than to the cluster its assigned. And, a value of 0 means its at the boundary of the distance between the two cluster. Value of +1 is ideal and -1 is least preferred. Hence, higher the value better is the cluster configuration.
 
 ## Summary
-Our 500 cluster HAC model can cluster together the 1,000 news articles we had pre-processed with an *F1-Score of 0.9067357512953368* and a *Sillhouette Score of 0.09050069997225527*. 
+Our 500 cluster HAC model can cluster together the 1,000 news articles we had pre-processed with an *F1-Score of 0.922* and a *Sillhouette Score of 0.093*. 
 
 
 Possible Roadblocks:

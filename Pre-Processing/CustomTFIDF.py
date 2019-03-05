@@ -7,8 +7,6 @@ Created on Mon Mar  4 16:12:21 2019
 """
 import sklearn
 
-import sklearn
-
 class CustomTFIDF(sklearn.base.TransformerMixin):
     
     def __init__(self, person_rate = 1,

@@ -5,9 +5,12 @@ Created on Mon Mar  4 14:59:22 2019
 
 @author: parkerglenn
 """
-import os
 import sklearn.base
 class NERTokenizer(sklearn.base.TransformerMixin):
+    """ 'Upper' decides whether to tokenize everything as lowercase, or apply selective uppercases to entities. 
+    If 'Upper = True', PERSON entities become .title(), while all others are .upper()
+    """
+    
     def __init__(self, upper = True):
         self._upper = upper
     

@@ -26,7 +26,7 @@ The orginal dataset was cleansed to only keep rows which contained both a url an
 ## Data Exploration
 We began by exploring the distribution of certain notable factors of the data, such as date and publisher. There are 10 unique pulishers in our subset of the data, with an interesting distribution in publishing date:
 
-<img src="https://github.com/parkervg/news-article-clustering/blob/master/Visualizations/date_frequency.png" width="500">
+<img src="https://github.com/parkervg/news-article-clustering/blob/master/Visualizations/date_distribution.png" width="500">
 
 
 For the purpose of our project, a document similarity-based task, it seemed most appropriate to run our clustering tests on a section of the data found to the right. Considering that the texts we are working with are all news stories, the frequency of having multiple distinct news stories published about the same event is increased when they are more chronologically compact, i.e. the chance of having an article about the 2016 Iowa Caucus 7 months after it took place is unlikely. 

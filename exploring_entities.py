@@ -132,9 +132,7 @@ npval = 0
 for value in not_people_dist["ratio"]:
     if value > .7:
         npval +=1
-      
-pval
-npval        
+           
 
 
 
@@ -147,12 +145,6 @@ sns.heatmap(distribution, cmap = "rocket", ax = ax, cbar = False)
 
 sns.heatmap(distribution.loc[distribution["type"] == "PERSON"])
 
-
-distribution.loc['egyptian_students']
-sent = "The muslim man was cool. Republicans and Democrats attack the Green Party."
-for tok in nlp(sent):
-    print(tok)
-    print(tok.ent_type_)
 
 
 

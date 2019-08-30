@@ -77,14 +77,10 @@ While the F1 Score defines success based on the values being assigned, the Silho
 A value of +1 indicates that the sample is far away from its neighboring cluster and very close to the cluster its assigned. Similarly, value of -1 indicates that the point is close to its neighboring cluster than to the cluster its assigned. And, a value of 0 means its at the boundary of the distance between the two cluster. Value of +1 is ideal and -1 is least preferred. Hence, higher the value better is the cluster configuration.
 
 ## Summary
-Our 500 cluster HAC model can cluster together the 1,000 news articles we had pre-processed with an *F1-Score of 0.922* and a *Sillhouette Score of 0.093*. 
-
-
-Possible Roadblocks:
-* Specificity in clusters. Russia = Russian election hacking or Russian international relations or Russian Olympic ban?
-* Intersections in broad topics. E.g. "Donald Trump speaks about Hurricane Matthew" about DT or hurricane?
-Notes:
-* Put special emphasis on dates and names when organizing clusters (use spacy entity recognition) 
+Our 500 cluster HAC model can cluster together the 1,000 news articles we had pre-processed with an *F1-Score of 0.922* and a *Sillhouette Score of 0.093*. \n
+A difficult idea that came up quite frequently was the definition of "success" within the project. Specifically, how broad we intended to be with our definition of an "event". Were we content with an article about Russian politics being clustered with the Russian Olympic ban? Ultimately, I decided to take a more granular approach to events, and label those two example events as "russian_politics" and "russian_olympic_ban" accordingly. \n
+Another difficulty in the scope of the project was navigating intersections in broad topics. Is the article "Donald Trump speaks about Hurricane Matthew" about Donald Trump or Hurricane Matthew? \n
+Overall, I am extremely pleased with how the project turned out and all that I learned about topic clustering and NLP.
 
 
 

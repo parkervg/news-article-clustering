@@ -31,7 +31,7 @@ plt.ylabel("Frequency", fontsize = 18)
 plt.title("Date Distribution", fontsize = 25)
 for i in ax.patches:
     ax.text(i.get_x() + .10, 5, str(i.get_height()), fontsize = 20, color = "black")
-    
+
 
 #Distance Heatmap
 dist = 1 - cosine_similarity(matrix)
@@ -41,8 +41,8 @@ dimensions = (20,20)
 fig, ax = pyplot.subplots(figsize=dimensions)
 sns.heatmap(dist, vmin = 0, vmax = 1, cmap = cmap).set_title("Tfidf Distances Between Articles", fontsize = 15)
 
-""" 
-Notice hot spot around the 625:630 line. 
+"""
+Notice hot spot around the 625:630 line.
 Those article titles:
 ['Dem Debate Blogging #1',
  'Dem Debate Blogging #2',
@@ -57,15 +57,12 @@ Reason: Iowa Caucuses.
 """
 
 
-#Tfidf Matrix, in 2D SVD scatterplot 
+#Tfidf Matrix, in 2D SVD scatterplot
 svd = TruncatedSVD(n_components=2).fit(matrix)
 data2D = svd.transform(matrix)
 plt.title("Truncated SVD, 2 Components")
 colors = rng.rand(1000)
 plt.scatter(data2D[:,0], data2D[:,1], marker = "o", c = colors, cmap = "YlGnBu", s = 10)
-"""
-Seems to follow Zipf's law: Rank in corpus * number = constant
-"""
 
 
 ######With clusters assigned as colors########
@@ -103,18 +100,18 @@ plt.show()
 
 mpld3.show(fig)
 
-# mpld3.save_html(fig, "Cluster_Centers.html")  
-   
+# mpld3.save_html(fig, "Cluster_Centers.html")
 
- 
+
+
 """Zoomed out plot with colors"""
 plt.title("Truncated SVD with Colored Clusters")
 plt.scatter(data2D[:, 0], data2D[:, 1], c=y_kmeans, cmap = "tab20", s=30)
 """Example plot, zoomed in to visualize cluster centers"""
 
-    
-    
-    
+
+
+
 fig, ax = plt.subplots(figsize = (14,8))
 np.random.seed(0)
 ax.plot(data2D[:, 0], data2D[:, 1],
@@ -131,7 +128,7 @@ mpld3.show(fig)
 
 
 
-    
+
 centers = kmeans.cluster_centers_
 plt.scatter(centers[:, 0], centers[:, 1], c='black', s=30, alpha=0.5, marker = 'x');
 pyplot.axis(ymax = 0, ymin =-.25 , xmax = .2, xmin = .14)
@@ -232,8 +229,8 @@ ax1.invert_yaxis()
 plt.show()
 
 """Silhouette Score distribution across hyperparameters
-More direct correlation here than in F1 Score. Most notably, as the rates increase, so does S Score. This is due to 
-the fact that the rating of words in articles becomes more radical; articles that are different from each other, i.e. share no 
+More direct correlation here than in F1 Score. Most notably, as the rates increase, so does S Score. This is due to
+the fact that the rating of words in articles becomes more radical; articles that are different from each other, i.e. share no
 entities, are now much more distant than before. Even more specifically, when the Entity Rate and Person Rate are dissimilar, the
 S Score is the highest. Again, the same radical rating phenomena: By limiting the amount of weighted features, those that are weighted
 make the article more of an outlier than before."""

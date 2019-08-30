@@ -6,9 +6,8 @@ Created on Mon Mar  4 16:12:21 2019
 @author: parkerglenn
 """
 import sklearn
-
 class CustomTFIDF(sklearn.base.TransformerMixin):
-    
+
     def __init__(self, person_rate = 1,
                   ents_rate = 1, max_df = 1.0, min_df = 0, date_weight = .1, julian = False, df = False):
         self._person_rate = person_rate
@@ -18,12 +17,12 @@ class CustomTFIDF(sklearn.base.TransformerMixin):
         self._date_weight = date_weight
         self._julian = julian
         self._df = df
-        
-        
+
+
     def fit(self, X, *_):
         return self
-    
-    
+
+
     def TF_dict(self, article):
             article_tf = {}
             for word in article:
@@ -43,7 +42,7 @@ class CustomTFIDF(sklearn.base.TransformerMixin):
                     article_tf[word] = (occurences / len(article)) * self._ents_rate
                 else:
                     occurences = article_tf[word]
-                    article_tf[word] = (occurences / len(article))            
+                    article_tf[word] = (occurences / len(article))
             return article_tf
 
 
@@ -60,7 +59,7 @@ class CustomTFIDF(sklearn.base.TransformerMixin):
                     found_words.append(word)
         return countDict
 
-        
+
 
 
     def IDF_dict(self, X):
@@ -110,7 +109,7 @@ class CustomTFIDF(sklearn.base.TransformerMixin):
         return article_tfidf
 
 
-    
+
     def compute_TFIDF_matrix(self, article):
         terms = sorted(self._countDict.keys())
         article_matrix = [0.0] * len(terms)
@@ -125,17 +124,15 @@ class CustomTFIDF(sklearn.base.TransformerMixin):
 
     def makeJulian(self,X):
         """X must be a df with a "date" column in '%Y-%m-%d' format.
-        
+
         This takes a while to run.
         """
         import datetime
         fmt = '%Y-%m-%d'
-        s = "2016-02-01"
-        s = datetime.datetime.strptime(s,fmt)
-        
-        
+
+
         import julian
-        
+
         julian_lst = []
         for date in X["date"]:
             dt = datetime.datetime.strptime(date,fmt)
@@ -144,13 +141,13 @@ class CustomTFIDF(sklearn.base.TransformerMixin):
         #Find amount of unique dates
         #Set arbitrary value (maybe 1, do hyperparameting testing again) to index of that date
         unique = list(set(julian_lst))
-                        
-        #Just to have easy access to indexes, ultimately to decide which place in the feature 
+
+        #Just to have easy access to indexes, ultimately to decide which place in the feature
         #matrix corresponds to which date
         unique_dict = {}
         for place, date in enumerate(unique):
             unique_dict[date] = place
-        
+
         jul_matrix = []
         for place, date in enumerate(julian_lst):
             #mini_matrix is the matrix for the individual article
@@ -166,9 +163,9 @@ class CustomTFIDF(sklearn.base.TransformerMixin):
                         mini_matrix[unique_dict[date] + num] = (self._date_weight / (abs(num)+.5))
             jul_matrix.append(mini_matrix)
         return jul_matrix
-        
 
-    
+
+
 
     def transform(self, X, *_):
         self._amount = len(X)
@@ -182,7 +179,7 @@ class CustomTFIDF(sklearn.base.TransformerMixin):
         #Decides whether or not to add date component
         if self._julian == True:
             import scipy
-            from scipy.sparse import  hstack 
+            from scipy.sparse import  hstack
             self._jul_list = self.makeJulian(self._df)
             self._jul_matrix = scipy.sparse.csr_matrix(self._jul_list)
             self._combo_matrix = hstack([self._jul_matrix, self._tfidf_matrix]).toarray()

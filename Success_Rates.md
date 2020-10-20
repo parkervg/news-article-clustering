@@ -67,5 +67,3 @@ General trend: As the entity weighting increases, the sillhouette score also inc
 #### 350_euclidean_HAC_ENTS_*2
 * F1 score: 0.8178807947019867
 * Sillhouette Score: 0.08456507985134794
-
-
